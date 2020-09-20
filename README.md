@@ -1,7 +1,7 @@
 Installation instructions:
 requires: python, pip, virtualenv(pip install virtualenv)
 
-virtualenv venv
+virtualenv venv or python3 -m virtualenv venv
 source venv/bin/activate
 pip3 install -r requirements.txt
 

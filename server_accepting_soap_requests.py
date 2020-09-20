@@ -3,7 +3,7 @@ from http.server import HTTPServer
 import requests
 
 def cityweatherreport(city_name):
-    key = 'your key'
+    key = ''
     weather_url_query = f"""http://api.weatherstack.com/current?access_key={key}&query={city_name}"""
     response = requests.get(weather_url_query)
     content = response.content.decode()
