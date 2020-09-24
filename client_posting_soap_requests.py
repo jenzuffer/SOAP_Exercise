@@ -19,9 +19,9 @@ def test_number_conversion_service():
 
 def test_weather_conversion_service():
     client = SoapClient(
-        location="http://localhost:8050/",
-        action='http://localhost:8050/',  # SOAPAction
-        namespace="http://example.com/sample.wsdl",
+        location="https://soapservice.christiansretsimpletestserver.xyz/",
+        action='https://soapservice.christiansretsimpletestserver.xyz/',  # SOAPAction
+        namespace="https://soapservice.christiansretsimpletestserver.xyz/sample.wsdl",
         soap_ns='soap',
         trace=True,
         ns="ns0",
