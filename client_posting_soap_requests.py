@@ -26,7 +26,7 @@ def test_weather_conversion_service():
         trace=True,
         ns="ns0",
         )
-    response = client.CityWeatherReport(city_name="Berlin")
+    response = client.CityWeatherReport(city_name="Madrid")
     result = response.weather_report
     print('result: ', result) 
 
