@@ -1,10 +1,10 @@
 from pysimplesoap.server import SoapDispatcher, SOAPHandler
 from http.server import HTTPServer
+from settings import weather_api_key
 import requests
 
 def cityweatherreport(city_name):
-    key = ''
-    weather_url_query = f"""http://api.weatherstack.com/current?access_key={key}&query={city_name}"""
+    weather_url_query = f"""http://api.weatherstack.com/current?access_key={weather_api_key}&query={city_name}"""
     response = requests.get(weather_url_query)
     content = response.content.decode()
     query = content.split('query":"', 1)[1].split('","language')[0]
