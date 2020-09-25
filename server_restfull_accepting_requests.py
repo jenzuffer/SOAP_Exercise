@@ -12,7 +12,6 @@ def get_ifconfig_ip():
 
 @app.route('/', methods=['GET'])
 def index():
-    ip_address = request.remote_addr
     headers = request.headers
     data = request.get_data()
     external_ip = get_ifconfig_ip() 
@@ -26,7 +25,6 @@ def index():
         <div> information about server and client: 
         <br>
            client: <br>
-           client ip: {ip_address} <br>
            headers: {headers} <br>
            data: {data} <br>
            <br><br>
