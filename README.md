@@ -15,4 +15,4 @@ I will also try to make a nginx proxy configuration work with the soap server so
 
 running dedicated remotely: screen -d -m -S servicename python3 server_accepting_soap_requests.py
 
-soapservice.christiansretsimpletestserver.xyz
+https://soapservice.christiansretsimpletestserver.xyz/
