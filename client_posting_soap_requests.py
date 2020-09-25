@@ -30,7 +30,7 @@ def test_weather_conversion_service():
     result = response.weather_report
     print('result: ', result) 
 
-def test_weather_restfull_api():
+def test_weather_with_request():
     url = 'https://soapservice.christiansretsimpletestserver.xyz/'
     headers = {'content-type': 'application/x-www-form-urlencoded; charset=utf-8'}
     body = '''<?xml version="1.0" encoding="utf-8"?>
@@ -49,7 +49,7 @@ def test_weather_restfull_api():
 def main():
     test_number_conversion_service()
     test_weather_conversion_service()
-    test_weather_restfull_api()
+    test_weather_with_request()
 
 if __name__ == '__main__':
     main()
