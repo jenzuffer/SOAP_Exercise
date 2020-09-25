@@ -30,9 +30,26 @@ def test_weather_conversion_service():
     result = response.weather_report
     print('result: ', result) 
 
+def test_weather_restfull_api():
+    url = 'https://soapservice.christiansretsimpletestserver.xyz/'
+    headers = {'content-type': 'application/x-www-form-urlencoded; charset=utf-8'}
+    body = '''<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <CityWeatherReport xmlns="https://soapservice.christiansretsimpletestserver.xyz/">
+      <city_name>"Berlin"</city_name>
+    </CityWeatherReport>
+  </soap:Body>
+</soap:Envelope>'''
+    print('body: ', body, '\n\n response content: ')
+    response = requests.post(url,data=body,headers=headers)
+    r_content = response.content.decode(errors='ignore').replace('\n', '').replace('&quot;', '')
+    pprint.pprint(r_content)
+
 def main():
-    #test_number_conversion_service()
+    test_number_conversion_service()
     test_weather_conversion_service()
+    test_weather_restfull_api()
 
 if __name__ == '__main__':
     main()
