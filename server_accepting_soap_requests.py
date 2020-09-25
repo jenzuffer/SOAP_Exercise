@@ -27,9 +27,9 @@ def cityweatherreport(city_name):
 def server_accepting_soap_requests():
     dispatcher = SoapDispatcher(
         name="WeatherServer",
-        location="http://127.0.0.1:8050/",
-        action='http://127.0.0.1:8050/', # SOAPAction
-        namespace="http://example.com/pysimplesoapsamle/", 
+        location="https://soapservice.christiansretsimpletestserver.xyz",
+        action='', # SOAPAction
+        namespace="https://soapservice.christiansretsimpletestserver.xyz", 
         prefix="ns0",
         trace = True,
         ns = True)
