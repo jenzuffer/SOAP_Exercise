@@ -1,5 +1,5 @@
 Installation instructions:
-requires: python, pip, virtualenv(pip install virtualenv)
+requires: python > 3.5, pip, virtualenv(pip install virtualenv)
 
 virtualenv venv or python3 -m virtualenv venv
 source venv/bin/activate
