@@ -17,7 +17,7 @@ I will also try to make a nginx proxy configuration work with the soap server so
 The RESTfull service will also for simplicity sake be made with python using flask to expose endpoints with and will run on 163.172.84.14:5000.
  <br/>
 running dedicated remotely: screen -d -m -S soap_service python3.8 server_accepting_soap_requests.py <br/>
-                            screen -d -m -S restfull_service flask run
+                            screen -d -m -S restfull_service flask run --port 5050
 <br/>
 https://soapservice.christiansretsimpletestserver.xyz/
 <br/>
