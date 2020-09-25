@@ -1,7 +1,44 @@
-from pysimplesoap.server import SoapDispatcher, SOAPHandler
-from http.server import HTTPServer
+#!flask/bin/python
+from flask import Flask, request, redirect, session, url_for
 from settings import weather_api_key
 import requests
+import os
+import platform
+
+app = Flask(__name__)
+
+def get_ifconfig_ip():
+    return os.popen('curl -s ifconfig.me').readline()
+
+@app.route('/', methods=['GET'])
+def index():
+    ip_address = request.remote_addr
+    headers = request.headers
+    data = request.get_data()
+    external_ip = get_ifconfig_ip() 
+    return f"""
+    <html>
+    <head>
+        <title>title 1 here</title>
+    </head>
+    <body>
+        <h1>Hello world</h1>
+        <div> information about server and client: 
+        <br>
+           client: <br>
+           client ip: {ip_address} <br>
+           headers: {headers} <br>
+           data: {data} <br>
+           <br><br>
+        server: <br>
+           os name: {os.name} <br>
+           platform: {platform.system()} <br>
+           release of platform: {platform.release()} <br>
+           server IP: {external_ip} <br>
+        </div>
+    </body>
+    </html>
+    """
 
 def cityweatherreport(city_name):
     weather_url_query = f"""http://api.weatherstack.com/current?access_key={weather_api_key}&query={city_name}"""
@@ -23,27 +60,9 @@ def cityweatherreport(city_name):
     print('weather_report: ', weather_report)
     return{'weather_report': weather_report}
 
-def server_accepting_soap_requests():
-    dispatcher = SoapDispatcher(
-        name="WeatherServer",
-        location="https://soapservice.christiansretsimpletestserver.xyz",
-        action='', # SOAPAction
-        namespace="https://soapservice.christiansretsimpletestserver.xyz", 
-        prefix="ns0",
-        trace = True,
-        ns = True)
-    dispatcher.register_function('CityWeatherReport', cityweatherreport,
-            returns={'weather_report': str},
-            args={'city_name': str})
-    print('starting server')
-    httpd = HTTPServer(("", 8050), SOAPHandler)
-    httpd.dispatcher = dispatcher
-    httpd.serve_forever()
+@app.route('/weatherreport', methods=['POST'])
+def get_weather_report():
+    cityname = request.get_json(force=True)
+    weather_report = cityweatherreport(cityname)
+    return f''' city name: {weather_report}'''
 
-def main():
-    server_accepting_soap_requests()
-    
-
-if __name__ == '__main__':
-    main()
-    
